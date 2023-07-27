@@ -115,6 +115,9 @@ function decreaseQuantity(prodictid) {
 
 		if (cart[j].productId === prodictid) {
 			cart[j].quantity -= 1;
+      if(cart[j].quantity<=0){
+        removeProductFromCart(cart[j].productId);
+      }
 
 
 		}
@@ -131,7 +134,7 @@ function removeProductFromCart(productid) {
 
 		if (cart[j].productId === productid) {
 			cart[j].quantity = 0;
-			cart[j] = {}
+			cart.pop(cart[j]);
 
 
 		}
@@ -163,13 +166,13 @@ function emptyCart() {
   - pay will return a positive number if money should be returned to customer
 */
 let totalPaid = 0;
-
+let remaining ;
 function pay(amount) {
 
 	totalPaid += cartTotal();
 
 
-	let remaining = cartTotal() - amount;
+	 remaining = amount - cartTotal();
 	if (remaining >= 0) {
 		return remaining;
 
