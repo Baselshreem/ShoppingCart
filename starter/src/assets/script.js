@@ -115,9 +115,9 @@ function decreaseQuantity(prodictid) {
 
 		if (cart[j].productId === prodictid) {
 			cart[j].quantity -= 1;
-      if(cart[j].quantity<=0){
-        removeProductFromCart(cart[j].productId);
-      }
+			if (cart[j].quantity <= 0) {
+				removeProductFromCart(cart[j].productId);
+			}
 
 
 		}
@@ -134,7 +134,9 @@ function removeProductFromCart(productid) {
 
 		if (cart[j].productId === productid) {
 			cart[j].quantity = 0;
-			cart.pop(cart[j]);
+			const index = cart.indexOf(cart[j]);
+			cart.splice(index, 1);
+			i--;
 
 
 		}
@@ -166,13 +168,14 @@ function emptyCart() {
   - pay will return a positive number if money should be returned to customer
 */
 let totalPaid = 0;
-let remaining ;
+let remaining;
+
 function pay(amount) {
 
 	totalPaid += cartTotal();
 
 
-	 remaining = amount - cartTotal();
+	remaining = amount - cartTotal();
 	if (remaining >= 0) {
 		return remaining;
 
