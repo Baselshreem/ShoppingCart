@@ -44,9 +44,7 @@ let i = 0;
   - addProductToCart should then increase the product's quantity
   - if the product is not already in the cart, add it to the cart
 */
-function getProductByIdFromList(productId, products) {
-	return products.find((product) => product.productId === productId);
-}
+
 
 function checkexit(prodictid) {
 
@@ -171,17 +169,14 @@ let totalPaid = 0;
 let remaining;
 
 function pay(amount) {
-
-	totalPaid += cartTotal();
-
-
-	remaining = amount - cartTotal();
-	if (remaining >= 0) {
-		return remaining;
+totalPaid=cartTotal();
+	totalPaid-=amount;
+	if (totalPaid >= 0) {
+		return totalPaid;
 
 	}
 
-	return remaining;
+	return totalPaid;
 
 
 
