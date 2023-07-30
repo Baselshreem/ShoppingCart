@@ -166,17 +166,19 @@ function emptyCart() {
   - pay will return a positive number if money should be returned to customer
 */
 let totalPaid = 0;
-let remaining;
 
-function pay(amount) {
-totalPaid=cartTotal();
-	totalPaid-=amount;
-	if (totalPaid >= 0) {
-		return totalPaid;
+function pay(amount) { 
+	totalPaid=cartTotal();
+	
+ 
+
+
+	if (amount >= totalPaid) {
+		return amount-totalPaid;
 
 	}
 
-	return totalPaid;
+	return amount-totalPaid;
 
 
 
