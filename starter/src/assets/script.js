@@ -165,24 +165,30 @@ function emptyCart() {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
-let totalPaid = 0;
-
-function pay(amount) { 
-	totalPaid=cartTotal();
-	
  
 
 
-	if (amount >= totalPaid) {
-		return amount-totalPaid;
+// Variable to track the total amount paid
+let totalPaid = cartTotal();
+function pay(amount) {
 
-	}
+    // Add the current payment amount to the totalPaid variable
+    totalPaid += amount;
 
-	return amount-totalPaid;
+    // Calculate the difference between the totalPaid and the cartTotal
+    let remaining = totalPaid-cartTotal();
+
+    // Check if the remaining amount is greater than or equal to zero
+    if (remaining >= 0) {
+        // If so, reset the `totalPaid` to zero to prepare it for the next
+        // payment, as the current payment is enough to cover the `cartTotal`.
+        totalPaid =0;
+		
+    }
 
 
-
-
+    // Return the remaining (negative if payment is less than the cartTotal)
+    return remaining;
 }
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
